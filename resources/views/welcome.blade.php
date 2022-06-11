@@ -21,6 +21,30 @@
         </style>
     </head>
     <body class="antialiased">
-        
+        <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
+                
+            <div style="color:white">
+                <h1>TO-DO LIST</h1>
+
+                @foreach ($ListItems as $item)
+    <div class='flex' style="align-items:center;">
+                    <p>Item: {{ $item->name }}</p>
+
+                <form action="{{ route('markComplete', $item->id) }}" method="post">
+                        {{ csrf_field() }}
+                    <button type="submit" style="max-height: 25px; margin-left:20px;">Mark complete</button>
+                    
+                </form>
+    </div>           
+                @endforeach
+
+                <form action="{{ route('saveItem') }}" method="post">
+                    {{ csrf_field() }}
+                    <label for="ListItem">New T0-DO item</label></br>
+                    <input type="text" name="ListItem"></br>
+                    <button type="submit">save</button>
+                </form>
+            </div>
+        </div>
     </body>
 </html>
